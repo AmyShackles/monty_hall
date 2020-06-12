@@ -1,0 +1,52 @@
+body {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.doors {
+  display: flex;
+}
+.doors p {
+  display: flex;
+  justify-content: center;
+}
+.modal {
+  position: fixed;
+  bottom: calc(50% - 200px);
+  left: calc(50% - 240px);
+  padding: 50px 25px;
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 3px;
+}
+.modal button {
+  margin: 20px;
+  width: 200px;
+}
+.results {
+  text-align: center;
+  font-size: 16px;
+}
+.win {
+  color: goldenrod;
+  font-size: 20px;
+}
+.lose {
+  color: darkred;
+  font-size: 20px;
+}
+button {
+  padding: 10px;
+  color: white;
+  font-size: 16px;
+  background-color: black;
+}
