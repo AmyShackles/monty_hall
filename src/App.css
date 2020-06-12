@@ -50,3 +50,16 @@ button {
   font-size: 16px;
   background-color: black;
 }
+@media screen and (max-width: 700px) {
+  img {
+    max-width: 70%;
+  }
+  .modal {
+    left: 0;
+    bottom: 25%;
+  }
+  .doors {
+    width: 90%;
+    margin: auto;
+  }
+}

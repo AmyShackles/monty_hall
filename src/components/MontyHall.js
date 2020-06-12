@@ -4,7 +4,7 @@ class MontyHall {
     this.doors = [1, 2, 3];
     this.prizeDoor = this.getPrizeDoor();
     this.montyDoor = this.montyOpens();
-    this.win = false;
+    this.win = "";
   }
   start() {
     console.log(`You chose ${this.contestantGuess} as your door`);
@@ -40,7 +40,8 @@ class MontyHall {
       response.push(`You guessed Door ${guess}. `);
     } else {
       response.push(
-        `You originally guessed Door ${this.contestantGuess} and switched to choose Door ${guess}. `
+        `You originally guessed Door ${this.contestantGuess}.`,
+        `You switched to choose Door ${guess}. `
       );
     }
     response.push(`The prize was located in Door ${this.prizeDoor}.  `);
@@ -48,6 +49,7 @@ class MontyHall {
       this.win = true;
       response.push("Congratulations, you win!");
     } else {
+      this.win = false;
       response.push("Better luck next time.");
     }
     return response;

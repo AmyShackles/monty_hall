@@ -4,9 +4,9 @@ import goatDoor from "../goatDoor.gif";
 import keyDoor from "../keyDoor.gif";
 
 const Door = ({ handleSelection, id, game }) => {
-  const { contestantGuess, montyDoor, prizeDoor, win } = game;
+  const { contestantGuess, montyDoor, prizeDoor, win = "" } = game;
 
-  if (win) {
+  if (win !== "") {
     return (
       <>
         {prizeDoor === +id ? (

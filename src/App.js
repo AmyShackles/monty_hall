@@ -7,8 +7,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>The Monty Hall Problem</h1>
-        <Gameshow />
       </header>
+      <Gameshow />
     </div>
   );
 }

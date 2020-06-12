@@ -28,10 +28,10 @@ const Gameshow = () => {
     setGame(null);
   };
   return (
-    <>
+    <main>
       {promptOpen && (
         <Prompt>
-          <h1>Do you want to change doors?</h1>
+          <p>Do you want to change doors?</p>
           <button onClick={keepDoor}>No</button>
           <button onClick={changeDoor}>Change Answer </button>
         </Prompt>
@@ -66,7 +66,7 @@ const Gameshow = () => {
           <button onClick={restart}>Play again?</button>
         </>
       )}
-    </>
+    </main>
   );
 };
 
