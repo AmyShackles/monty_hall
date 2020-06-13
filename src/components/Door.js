@@ -6,7 +6,7 @@ import keyDoor from "../keyDoor.gif";
 const Door = ({ handleSelection, id, game }) => {
   const { contestantGuess, montyDoor, prizeDoor, win = "" } = game;
 
-  if (win !== "") {
+  if (win === true || win === false) {
     return (
       <>
         {prizeDoor === +id ? (
@@ -26,7 +26,7 @@ const Door = ({ handleSelection, id, game }) => {
         {contestantGuess === +id ? (
           <div>
             <img src={closedDoor} alt="Closed door" />
-            <p>You choose Door {id}</p>
+            <p>You chose Door {id}</p>
           </div>
         ) : montyDoor === +id ? (
           <div>
