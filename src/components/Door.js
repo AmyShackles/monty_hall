@@ -3,20 +3,16 @@ import closedDoor from "../closedDoor.png";
 import goatDoor from "../goatDoor.gif";
 import keyDoor from "../keyDoor.gif";
 
-const Door = ({ handleSelection, id, game }) => {
+const Door = ({ handleSelection, id, game, isOpen }) => {
   const { contestantGuess, montyDoor, prizeDoor, win = "" } = game;
 
   if (win === true || win === false) {
     return (
       <>
         {prizeDoor === +id ? (
-          <div>
             <img src={keyDoor} alt="Opening door to reveal keys" />
-          </div>
         ) : (
-          <div>
             <img src={goatDoor} alt="Opening door to reveal goat" />
-          </div>
         )}
       </>
     );
@@ -24,26 +20,25 @@ const Door = ({ handleSelection, id, game }) => {
     return (
       <>
         {contestantGuess === +id ? (
-          <div>
+          <button disabled={isOpen}>
             <img src={closedDoor} alt="Closed door" />
             <p>You chose Door {id}</p>
-          </div>
+          </button>
         ) : montyDoor === +id ? (
-          <div>
+          <button disabled={isOpen}>
             <img src={goatDoor} alt="Opening door to reveal goat" />
             <p>Monty opens Door {id}</p>
-          </div>
+          </button>
         ) : (
-          <div>
+          <button onClick={handleSelection} disabled={isOpen}>
             <img
               src={closedDoor}
               name={id}
               id={`door-${id}`}
               alt="Closed door"
-              onClick={handleSelection}
             />
             <p>Door {id}</p>
-          </div>
+          </button>
         )}
       </>
     );

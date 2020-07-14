@@ -7,7 +7,6 @@ class MontyHall {
     this.win = "";
   }
   start() {
-    console.log(`You chose ${this.contestantGuess} as your door`);
     return this.montyOpens();
   }
   getPrizeDoor() {

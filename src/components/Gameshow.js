@@ -7,6 +7,7 @@ const Gameshow = ({ setScore, setGamesPlayed, setSwitched }) => {
   const [promptOpen, setPromptOpen] = React.useState(false);
   const [result, setResult] = React.useState("");
   const [game, setGame] = React.useState({});
+  const [selected, setSelected] = React.useState(false);
   React.useEffect(() => {
     if (game.win === true) {
       setScore((score) => score + 1);
@@ -19,17 +20,19 @@ const Gameshow = ({ setScore, setGamesPlayed, setSwitched }) => {
     const door = event.target.name;
     if (!game.contestantDoor) {
       setGame(new MontyHall(door));
-      setPromptOpen(true);
+      setSelected(true);
     }
   };
   const keepDoor = () => {
     setResult(game.checkWinning());
     setPromptOpen(false);
+    setSelected(false);
   };
   const changeDoor = () => {
     setResult(game.changeAnswer());
     setSwitched((switched) => switched + 1);
     setPromptOpen(false);
+    setSelected(false);
   };
   const restart = () => {
     setResult("");
@@ -37,18 +40,19 @@ const Gameshow = ({ setScore, setGamesPlayed, setSwitched }) => {
   };
   return (
     <main>
-      {promptOpen && (
+      {promptOpen ? (
         <Prompt>
           <p>Do you want to change doors?</p>
-          <button onClick={keepDoor}>No</button>
-          <button onClick={changeDoor}>Change Answer </button>
+          <button tabIndex="0" onClick={keepDoor}>No</button>
+          <button tabIndex="0" onClick={changeDoor}>Change Answer </button>
         </Prompt>
-      )}
+      ) : null}
       <div className="doors">
-        <Door id="1" game={game || {}} handleSelection={handleSelection} />
-        <Door id="2" game={game || {}} handleSelection={handleSelection} />
-        <Door id="3" game={game || {}} handleSelection={handleSelection} />
+        <Door id="1" isOpen={promptOpen} game={game || {}} handleSelection={handleSelection} />
+        <Door id="2" isOpen={promptOpen} game={game || {}} handleSelection={handleSelection} />
+        <Door id="3" isOpen={promptOpen} game={game || {}} handleSelection={handleSelection} />
       </div>
+      {selected ? <button onClick={() => setPromptOpen(true)}>Decide Next Move</button> : null}
       {result && (
         <>
           <div className="results">

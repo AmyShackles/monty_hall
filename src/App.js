@@ -11,7 +11,7 @@ function App() {
       <header className="App-header">
         <h1>The Monty Hall Problem</h1>
       </header>
-      <div className="score">
+      {score ? <div className="score">
         <p>
           {score} wins/{gamesPlayed} games
         </p>
@@ -36,8 +36,8 @@ function App() {
             : ((score / gamesPlayed) * 100).toFixed(2)}
           %
         </p>
-      </div>
-      <h2>Select a door</h2>
+      </div> : null}
+      {!switched && <h2>Select a door</h2>}
       <Gameshow
         setScore={setScore}
         setGamesPlayed={setGamesPlayed}

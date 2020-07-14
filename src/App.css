@@ -1,6 +1,7 @@
 body {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   text-align: center;
   color: white;
   background-color: black;
@@ -8,25 +9,28 @@ body {
 
 .doors {
   display: flex;
+  justify-content: center;
 }
 .doors p {
   display: flex;
   justify-content: center;
 }
-.modal {
-  position: fixed;
-  bottom: calc(50% - 200px);
-  left: calc(50% - 240px);
-  padding: 50px 25px;
+.modal {  
   background-color: white;
-  border: 1px solid grey;
-  border-radius: 3px;
+  width: 50vw;
+  margin: auto;
   color: black;
 }
 .modal button {
+  padding: 20px 10px;
   margin: 20px;
-  width: 200px;
-  color: white;
+  width: 155px;
+}
+.modal button:focus {
+  outline: 3px solid blue;
+}
+.modal p {
+  padding: 20px 0 0;
 }
 .results {
   text-align: center;
@@ -55,10 +59,6 @@ button {
 @media screen and (max-width: 700px) {
   img {
     max-width: 70%;
-  }
-  .modal {
-    left: 0;
-    bottom: 25%;
   }
   .doors {
     width: 90%;

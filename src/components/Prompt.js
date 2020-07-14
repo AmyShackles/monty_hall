@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 
 const Prompt = ({ children }) =>
   ReactDOM.createPortal(
-    <div className="modal">{children}</div>,
+    <div className="modal" tabIndex="0">{children}</div>,
     document.getElementById("modal-root")
   );
 
