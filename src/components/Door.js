@@ -22,7 +22,7 @@ const Door = ({ handleSelection, id, game, isOpen, prizeOrGoat }) => {
 
   if (win !== "") {
     return (
-      <div className="scene" tabIndex="0">
+      <div className="scene" tabIndex={game.prizeDoor ? '' : "0"} disabled={isOpen}>
         <div className="goat">
           <img src={game.prizeDoor ? (prizeDoor === +id ? keyDoor : goatDoor) : prizeOrGoat ? keyDoor : goatDoor} alt={prizeDoor === +id ? 'Door opens to reveal prize' : 'Door opens to reveal goat'}/>
         </div>
@@ -38,7 +38,7 @@ const Door = ({ handleSelection, id, game, isOpen, prizeOrGoat }) => {
                   <stop offset="100%" stopColor="rgba(135,107,14,1)" />
                 </linearGradient>
               </defs>
-              <circle className="doorknob" cx="90%" cy="80%" r="5" />
+              <circle className="doorknob" cx="90%" cy="65%" r="5" />
             </svg>
           </div>
           <div className="door--face door--back"></div>
@@ -49,7 +49,7 @@ const Door = ({ handleSelection, id, game, isOpen, prizeOrGoat }) => {
   } else {
     if (contestantGuess === +id) {
       return (
-        <div className="scene" tabIndex="0">
+        <div className="scene" tabIndex={game.prizeDoor ? '' : "0"} disabled={isOpen}>
           <div className="goat"></div>
 
           <div className="door" id={id} >
@@ -63,7 +63,7 @@ const Door = ({ handleSelection, id, game, isOpen, prizeOrGoat }) => {
                     <stop offset="100%" stopColor="rgba(135,107,14,1)" />
                   </linearGradient>
                 </defs>
-                <circle className="doorknob" cx="90%" cy="80%" r="5" />
+                <circle className="doorknob" cx="90%" cy="65%" r="5" />
               </svg>
             </div>
             <div className="door--face door--back"></div>
@@ -74,7 +74,7 @@ const Door = ({ handleSelection, id, game, isOpen, prizeOrGoat }) => {
       )
     } else if (montyDoor === +id) {
       return (
-        <div className="scene" tabIndex="0">
+        <div className="scene" tabIndex={game.prizeDoor ? '' : "0"}  disabled={isOpen}>
           <div className="goat">
             <img src={goatDoor} alt="Door opens to reveal goat"/>
 
@@ -91,7 +91,7 @@ const Door = ({ handleSelection, id, game, isOpen, prizeOrGoat }) => {
                     <stop offset="100%" stopColor="rgba(135,107,14,1)" />
                   </linearGradient>
                 </defs>
-                <circle className="doorknob" cx="90%" cy="80%" r="5" />
+                <circle className="doorknob" cx="90%" cy="65%" r="5" />
               </svg>
             </div>
             <div className="door--face door--back"></div>
@@ -103,7 +103,7 @@ const Door = ({ handleSelection, id, game, isOpen, prizeOrGoat }) => {
       )
     } else {
       return (
-        <div className="scene" tabIndex="0" onClick={e => handleClick(e, id)} onKeyDown={e => handleKeyPress(e, id)} role="button" >
+        <div className="scene" tabIndex={game.prizeDoor ? '' : "0"} onClick={e => handleClick(e, id)} onKeyDown={e => handleKeyPress(e, id)} role="button" disabled={isOpen}>
           <div className="goat">
           <img src={game.prizeDoor ? (prizeDoor === +id ? keyDoor : goatDoor) : prizeOrGoat ? keyDoor : goatDoor} alt={prizeDoor === +id ? 'Door opens to reveal prize' : 'Door opens to reveal goat'}/>
           </div>
@@ -119,7 +119,7 @@ const Door = ({ handleSelection, id, game, isOpen, prizeOrGoat }) => {
                     <stop offset="100%" stopColor="rgba(135,107,14,1)" />
                   </linearGradient>
                 </defs>
-                <circle className="doorknob" cx="90%" cy="80%" r="5" />
+                <circle className="doorknob" cx="90%" cy="65%" r="5" />
               </svg>
             </div>
             <div className="door--face door--back"></div>

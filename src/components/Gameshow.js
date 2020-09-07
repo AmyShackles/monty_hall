@@ -59,7 +59,7 @@ const Gameshow = ({ setScore, setGamesPlayed, setSwitched, setModalOpen }) => {
         <Door id="3" prizeOrGoat={prizeOrGoat === 3} isOpen={promptOpen} game={game || {}} handleSelection={handleSelection} />
       </div>
       <br />
-      {selected ? <button onClick={() => setPromptOpen(true)}>Decide Next Move</button> : null}
+      {selected ? <button disabled={promptOpen} onClick={() => setPromptOpen(true)}>Decide Next Move</button> : null}
       {result && (
         <>
           <div className="results">
