@@ -7,14 +7,6 @@ body {
   background-color: black;
 }
 
-.doors {
-  display: flex;
-  justify-content: center;
-}
-.doors p {
-  display: flex;
-  justify-content: center;
-}
 .modal {  
   background-color: white;
   width: 50vw;
@@ -102,4 +94,90 @@ caption {
 .description {
   width: 50%;
   margin: auto;
+}
+.doors {
+  display: flex;
+  flex-wrap: wrap
+}
+.doorknob {
+  fill: url("#doorknobGradient");
+
+}
+
+.scene {
+  width: 210px;
+  height: 325px;
+  border: 1px solid #CCC;
+  margin: 100px auto;
+  perspective: 1200px;
+  background-color: black;
+}
+.goat {
+  position: absolute;
+  height: 325px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  right: 0;
+}
+.goat img {
+ 
+  width: 200px;
+}
+.goat svg {
+
+}
+
+.door {
+  width: 200px;
+  height: 325px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform-origin: left;
+  transition: transform 1s;
+
+}
+
+.door.show--front  { transform: translateZ(0) rotateY(   0deg); }
+.door.show--back   { transform: translateZ(0) rotateY(-180deg); }
+.door.show--right  { transform: translateZ(0) rotateY( -115deg); }
+
+
+
+.door--face {
+  position: absolute;
+  border: 2px solid black;
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+.door--front,
+.door--back {
+  width: 210px;
+  height: 320px;
+}
+
+.door--right,
+.door--left {
+  width: 50px;
+  height: 320px;
+  left: 38px;
+}
+
+.door--front  {
+background: linear-gradient(90deg, rgba(84,19,0,1) 2%, rgba(123,47,11,1) 26%, rgba(123,47,11,1) 74%, rgba(84,19,0,1) 100%);}
+.door--right  { background: #360e03;}
+.door--back   {
+background: linear-gradient(90deg, rgba(84,19,0,1) 2%, rgba(123,47,11,1) 26%, rgba(123,47,11,1) 74%, rgba(84,19,0,1) 100%);}
+
+.door--front  { transform: rotateY(0deg) translateZ(25px); }
+.door--back   { transform: rotateY(180deg) translateZ(25px); }
+
+.door--right  { transform: rotateY( 90deg) translateZ(150px); }
+.scene:focus {
+  outline: 4px ridge white;
+  border-radius: 2rem;
 }

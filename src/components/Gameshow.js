@@ -8,6 +8,8 @@ const Gameshow = ({ setScore, setGamesPlayed, setSwitched, setModalOpen }) => {
   const [result, setResult] = React.useState("");
   const [game, setGame] = React.useState({});
   const [selected, setSelected] = React.useState(false);
+  const [prizeOrGoat, setPrizeOrGoat] = React.useState('')
+
   React.useEffect(() => {
     if (game.win === true) {
       setScore((score) => score + 1);
@@ -17,9 +19,9 @@ const Gameshow = ({ setScore, setGamesPlayed, setSwitched, setModalOpen }) => {
     }
   }, [game.win, setScore, setGamesPlayed]);
 
-  const handleSelection = (event) => {
+  const handleSelection = (id) => {
     setModalOpen(true);
-    const door = event.target.name;
+    const door = id
     if (!game.contestantDoor) {
       setGame(new MontyHall(door));
       setSelected(true);
@@ -38,6 +40,7 @@ const Gameshow = ({ setScore, setGamesPlayed, setSwitched, setModalOpen }) => {
   };
   const restart = () => {
     setResult("");
+    setPrizeOrGoat(game.prizeDoor);
     setGame({});
     setModalOpen(false);
   };
@@ -51,11 +54,11 @@ const Gameshow = ({ setScore, setGamesPlayed, setSwitched, setModalOpen }) => {
         </Prompt>
       ) : null}
       <div className="doors">
-        <Door id="1" isOpen={promptOpen} game={game || {}} handleSelection={handleSelection} />
-        <Door id="2" isOpen={promptOpen} game={game || {}} handleSelection={handleSelection} />
-        <Door id="3" isOpen={promptOpen} game={game || {}} handleSelection={handleSelection} />
+        <Door id="1" prizeOrGoat={prizeOrGoat === 1} isOpen={promptOpen} game={game || {}} handleSelection={handleSelection} />
+        <Door id="2" prizeOrGoat={prizeOrGoat === 2} isOpen={promptOpen} game={game || {}} handleSelection={handleSelection} />
+        <Door id="3" prizeOrGoat={prizeOrGoat === 3} isOpen={promptOpen} game={game || {}} handleSelection={handleSelection} />
       </div>
-      <br/>
+      <br />
       {selected ? <button onClick={() => setPromptOpen(true)}>Decide Next Move</button> : null}
       {result && (
         <>

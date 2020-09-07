@@ -1,47 +1,134 @@
 import React from "react";
-import closedDoor from "../closedDoor.png";
-import goatDoor from "../goatDoor.gif";
-import keyDoor from "../keyDoor.gif";
+import goatDoor from '../goathead.svg';
+import keyDoor from '../cashbriefcase.svg';
 
-const Door = ({ handleSelection, id, game, isOpen }) => {
+const Door = ({ handleSelection, id, game, isOpen, prizeOrGoat }) => {
   const { contestantGuess, montyDoor, prizeDoor, win = "" } = game;
 
-  if (win === true || win === false) {
+  const handleKeyPress = (e, id) => {
+    if (e.keyCode === 13 || e.keyCode === 32) {
+      e.preventDefault();
+      if (!game.montyDoor) {
+        handleSelection(id)
+      }    }
+  }
+
+  const handleClick = (e, id) => {
+    e.preventDefault();
+    if (!game.montyDoor) {
+      handleSelection(id)
+    }
+  }
+
+  if (win !== "") {
     return (
-      <>
-        {prizeDoor === +id ? (
-            <img src={keyDoor} alt="Opening door to reveal keys" />
-        ) : (
-            <img src={goatDoor} alt="Opening door to reveal goat" />
-        )}
-      </>
-    );
+      <div className="scene" tabIndex="0">
+        <div className="goat">
+          <img src={game.prizeDoor ? (prizeDoor === +id ? keyDoor : goatDoor) : prizeOrGoat ? keyDoor : goatDoor} alt={prizeDoor === +id ? 'Door opens to reveal prize' : 'Door opens to reveal goat'}/>
+        </div>
+
+        <div className="door show--right" id={id}>
+          <div className="door--face door--front">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="doorknobGradient">
+                  <stop offset="2%" stopColor="rgba(172,143,26,1)" />
+                  <stop offset="26%" stopColor="rgba(172,143,26,1)" />
+                  <stop offset="74%" stopColor="rgba(144,113,9,1)" />
+                  <stop offset="100%" stopColor="rgba(135,107,14,1)" />
+                </linearGradient>
+              </defs>
+              <circle className="doorknob" cx="90%" cy="80%" r="5" />
+            </svg>
+          </div>
+          <div className="door--face door--back"></div>
+          <div className="door--face door--right"></div>
+        </div>
+      </div>
+    )
   } else {
-    return (
-      <>
-        {contestantGuess === +id ? (
-          <button disabled={isOpen}>
-            <img src={closedDoor} alt="Closed door" />
-            <p>You chose Door {id}</p>
-          </button>
-        ) : montyDoor === +id ? (
-          <button disabled={isOpen}>
-            <img src={goatDoor} alt="Opening door to reveal goat" />
-            <p>Monty opens Door {id}</p>
-          </button>
-        ) : (
-          <button onClick={handleSelection} disabled={isOpen}>
-            <img
-              src={closedDoor}
-              name={id}
-              id={`door-${id}`}
-              alt="Closed door"
-            />
-            <p>Door {id}</p>
-          </button>
-        )}
-      </>
-    );
+    if (contestantGuess === +id) {
+      return (
+        <div className="scene" tabIndex="0">
+          <div className="goat"></div>
+
+          <div className="door" id={id} >
+            <div className="door--face door--front">
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="doorknobGradient">
+                    <stop offset="2%" stopColor="rgba(172,143,26,1)" />
+                    <stop offset="26%" stopColor="rgba(172,143,26,1)" />
+                    <stop offset="74%" stopColor="rgba(144,113,9,1)" />
+                    <stop offset="100%" stopColor="rgba(135,107,14,1)" />
+                  </linearGradient>
+                </defs>
+                <circle className="doorknob" cx="90%" cy="80%" r="5" />
+              </svg>
+            </div>
+            <div className="door--face door--back"></div>
+            <div className="door--face door--right"></div>
+          </div>
+          <p>You chose door {id}</p>
+        </div>
+      )
+    } else if (montyDoor === +id) {
+      return (
+        <div className="scene" tabIndex="0">
+          <div className="goat">
+            <img src={goatDoor} alt="Door opens to reveal goat"/>
+
+          </div>
+
+          <div className="door show--right" id={id} >
+            <div className="door--face door--front">
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="doorknobGradient">
+                    <stop offset="2%" stopColor="rgba(172,143,26,1)" />
+                    <stop offset="26%" stopColor="rgba(172,143,26,1)" />
+                    <stop offset="74%" stopColor="rgba(144,113,9,1)" />
+                    <stop offset="100%" stopColor="rgba(135,107,14,1)" />
+                  </linearGradient>
+                </defs>
+                <circle className="doorknob" cx="90%" cy="80%" r="5" />
+              </svg>
+            </div>
+            <div className="door--face door--back"></div>
+            <div className="door--face door--right"></div>
+          </div>
+          <p>Monty opens door {id}</p>
+        </div>
+
+      )
+    } else {
+      return (
+        <div className="scene" tabIndex="0" onClick={e => handleClick(e, id)} onKeyDown={e => handleKeyPress(e, id)} role="button" >
+          <div className="goat">
+          <img src={game.prizeDoor ? (prizeDoor === +id ? keyDoor : goatDoor) : prizeOrGoat ? keyDoor : goatDoor} alt={prizeDoor === +id ? 'Door opens to reveal prize' : 'Door opens to reveal goat'}/>
+          </div>
+
+          <div className="door" id={id} >
+            <div className="door--face door--front">
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="doorknobGradient">
+                    <stop offset="2%" stopColor="rgba(172,143,26,1)" />
+                    <stop offset="26%" stopColor="rgba(172,143,26,1)" />
+                    <stop offset="74%" stopColor="rgba(144,113,9,1)" />
+                    <stop offset="100%" stopColor="rgba(135,107,14,1)" />
+                  </linearGradient>
+                </defs>
+                <circle className="doorknob" cx="90%" cy="80%" r="5" />
+              </svg>
+            </div>
+            <div className="door--face door--back"></div>
+            <div className="door--face door--right"></div>
+          </div>
+        </div>
+      )
+    }
+
   }
 };
 
